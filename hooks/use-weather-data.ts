@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query"
 import { WeatherResponse } from "@/types/weather"
 
-export function useWeatherData(city: string) {
+export function useWeatherData(city: string, initialData?: WeatherResponse) {
+    
   return useQuery<WeatherResponse>({
     queryKey: ["weather", city],
     queryFn: async () => {
@@ -11,6 +12,7 @@ export function useWeatherData(city: string) {
       }
       return response.json()
     },
+    initialData,
     staleTime: 1000 * 60 * 5, // 5 minutes
   })
 } 

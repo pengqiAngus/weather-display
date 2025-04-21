@@ -7,7 +7,7 @@ export async function GET(request: Request) {
 
   try {
     const response = await fetch(
-      `https://restapi.amap.com/v3/weather/weatherInfo?key=${process.env.AMAP_KEY}&city=${city}&extensions=all`
+      `${process.env.AMAP_API_URL}/weather/weatherInfo?key=${process.env.AMAP_KEY}&city=${city}&extensions=all`
     )
     const data: WeatherResponse = await response.json()
     

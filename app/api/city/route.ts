@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
   try {
     const response = await fetch(
-      `https://restapi.amap.com/v3/config/district?key=${process.env.AMAP_KEY}&keywords=${encodeURIComponent(
+      `${process.env.AMAP_API_URL}/config/district?key=${process.env.AMAP_KEY}&keywords=${encodeURIComponent(
         keyword
       )}&subdistrict=0`
     )
