@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react"
+'use client'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
@@ -13,8 +11,7 @@ import { City } from "@/types/city"
 import { CitySearch } from "@/components/city-search"
 import { WeatherResponse } from "@/types/weather"
 import { useWeatherData } from "@/hooks/use-weather-data"
-import { useCitySearch } from "@/hooks/use-city-search"
-import { useDebounce } from "@/hooks/use-debounce"
+import { useState } from "react"
 
 interface WeatherContentProps {
   initialData: WeatherResponse
@@ -25,8 +22,6 @@ interface WeatherContentProps {
 export function WeatherContent({ initialData, initialCity, mainCities }: WeatherContentProps) {
   const [selectedCity, setSelectedCity] = useState(initialCity)
   const [searchQuery, setSearchQuery] = useState("")
-  const debouncedSearchQuery = useDebounce(searchQuery, 500)
-  const { data: searchResults } = useCitySearch(debouncedSearchQuery)
   const { data: weatherData, isLoading } = useWeatherData(selectedCity, selectedCity === initialCity ? initialData : undefined)
 
   const handleCityChange = (city: City) => {
